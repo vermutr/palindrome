@@ -11,14 +11,14 @@ internal class PalindromeServiceImplTest {
     @Test
     fun isPalindrome() {
         val psi = PalindromeServiceImpl()
-        val isPalindrome = psi.isPalindrome("а роза упала на лапу Азора")
+        val isPalindrome = psi.isPalindrome("hello olleh")
         assertTrue(isPalindrome)
     }
 
     @Test
     fun isPalindromeWithPunctuation() {
         val psi = PalindromeServiceImpl()
-        val isPalindrome = psi.isPalindrome("а, роза`*+--       упала!!!! на лапу: Азора???")
+        val isPalindrome = psi.isPalindrome("Borrow , or `*+--       rob!!!! : ???")
         assertTrue(isPalindrome)
     }
 
@@ -32,7 +32,7 @@ internal class PalindromeServiceImplTest {
     @Test
     fun isPalindromeWithBadOrthography() {
         val psi = PalindromeServiceImpl()
-        val isPalindrome = psi.isPalindrome("топат тапот")
+        val isPalindrome = psi.isPalindrome("Daw, O cowad")
         assertTrue(isPalindrome)
     }
 
