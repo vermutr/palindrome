@@ -68,15 +68,15 @@ internal class UserServiceImplTest {
     @Test
     fun getUsersTopRating() {
         val usersTopRating = userService.getUsersTopRating(5)
-        val listOfTopUsers = listOf(
-            User(6, "Katia", mutableListOf("salassalas"), 10),
-            User(5, "Olia", mutableListOf("travavart"), 9),
-            User(3, "Vasia", mutableListOf("tqwewqt"), 7),
-            User(4, "Ira", mutableListOf("mommom"), 6),
-            User(1, "Roma", mutableListOf("topot"), 5)
-        )
         assertTrue(usersTopRating.size == 5)
-        assertTrue(userService.userRepository.userList.containsAll(listOfTopUsers))
+        assertTrue(userService.userRepository.userList.containsAll(usersTopRating))
+    }
+
+    @Test
+    fun getUsersTopRatingExtraLimit() {
+        val usersTopRating = userService.getUsersTopRating(10)
+        assertTrue(usersTopRating.size == 6)
+        assertTrue(userService.userRepository.userList.containsAll(usersTopRating))
     }
 
     @Test
