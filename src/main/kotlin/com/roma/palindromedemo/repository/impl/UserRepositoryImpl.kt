@@ -11,17 +11,16 @@ class UserRepositoryImpl : UserRepository {
         return userList.sortedByDescending { it.point }.take(limit)
     }
 
-    override fun getUserById(id: Int): User {
-        return userList.first { it.id == id }
+    override fun getUserById(id: Int): User? {
+        return userList.find { it.id == id }
     }
 
     override fun saveUser(user: User) {
         userList.add(user)
     }
 
-    override fun deleteUser(id: Int) {
-        val userById = getUserById(id)
-        userList.remove(userById)
+    override fun deleteUser(user: User) {
+        userList.remove(user)
     }
 
     override fun getAllUsers(): List<User> {

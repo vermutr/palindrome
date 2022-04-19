@@ -1,5 +1,6 @@
 package com.roma.palindromedemo.service.impl
 
+import com.roma.palindromedemo.config.exception.UserNotFoundException
 import com.roma.palindromedemo.config.exception.UserSaveException
 import com.roma.palindromedemo.entity.User
 import com.roma.palindromedemo.repository.impl.UserRepositoryImpl
@@ -10,7 +11,7 @@ class UserServiceImpl : UserService {
     val userRepository: UserRepositoryImpl = UserRepositoryImpl()
 
     override fun getUserById(id: Int): User {
-        return userRepository.getUserById(id)
+        return userRepository.getUserById(id) ?: throw UserNotFoundException("user with id : $id not found")
     }
 
     override fun saveUser(user: User) {
@@ -21,7 +22,8 @@ class UserServiceImpl : UserService {
     }
 
     override fun deleteUser(id: Int) {
-        userRepository.deleteUser(id)
+        val userById = getUserById(id)
+        userRepository.deleteUser(userById)
     }
 
     override fun getAllUsers(): List<User> {

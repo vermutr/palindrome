@@ -1,7 +1,6 @@
 package com.roma.palindromedemo.repository.impl
 
 import com.roma.palindromedemo.entity.User
-import com.roma.palindromedemo.repository.impl.UserRepositoryImpl
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -54,7 +53,7 @@ internal class UserRepositoryImplTest {
     @Test
     fun deleteUser() {
         assertTrue(userRepository.userList.contains(User(3, "Vasia", mutableListOf("tqwewqt"), 7)))
-        userRepository.deleteUser(3)
+        userRepository.deleteUser(User(3, "Vasia", mutableListOf("tqwewqt"), 7))
         assertFalse(userRepository.userList.contains(User(3, "Vasia", mutableListOf("tqwewqt"), 7)))
     }
 

@@ -1,8 +1,8 @@
 package com.roma.palindromedemo.service.impl
 
+import com.roma.palindromedemo.config.exception.UserNotFoundException
 import com.roma.palindromedemo.config.exception.UserSaveException
 import com.roma.palindromedemo.entity.User
-import com.roma.palindromedemo.service.impl.UserServiceImpl
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
@@ -33,7 +33,7 @@ internal class UserServiceImplTest {
 
     @Test
     fun getUserNotExistentById() {
-        assertFailsWith<NoSuchElementException> {
+        assertFailsWith<UserNotFoundException> {
             userService.getUserById(10)
         }
     }
@@ -57,6 +57,14 @@ internal class UserServiceImplTest {
         assertTrue(userService.userRepository.userList.contains(User(3, "Vasia", mutableListOf("tqwewqt"), 7)))
         userService.deleteUser(3)
         assertFalse(userService.userRepository.userList.contains(User(3, "Vasia", mutableListOf("tqwewqt"), 7)))
+    }
+
+
+    @Test
+    fun deleteNoExistingUser() {
+        assertFailsWith<UserNotFoundException> {
+            userService.deleteUser(10)
+        }
     }
 
     @Test

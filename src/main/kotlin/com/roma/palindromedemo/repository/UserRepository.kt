@@ -8,11 +8,11 @@ interface UserRepository {
     //@Query(select qwe from User qwe order by qwe.rating limit ?)
     fun getUsersTopRating(limit: Int): List<User>
 
-    fun getUserById(id: Int): User
+    fun getUserById(id: Int): User?
 
     fun saveUser(user: User)
 
-    fun deleteUser(id: Int)
+    fun deleteUser(user: User)
 
     fun getAllUsers(): List<User>
 
